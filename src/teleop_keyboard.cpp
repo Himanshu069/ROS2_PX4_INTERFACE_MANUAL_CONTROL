@@ -21,10 +21,12 @@ public:
         qos.reliability(RMW_QOS_POLICY_RELIABILITY_RELIABLE);
         qos.history(RMW_QOS_POLICY_HISTORY_KEEP_LAST);
         qos.keep_last(10);
-
+        
+        std::string cmd_vel_topic = instance_.empty() ? "cmd_vel" : instance_ + "/cmd_vel";
+        std::string active_topic = instance_.empty() ? "teleop/active" : instance_ + "/teleop/active";
         // Create publishers with prefix
-        pub_ = this->create_publisher<geometry_msgs::msg::Twist>(instance_ + "/cmd_vel", qos);
-        active_pub_ = this->create_publisher<std_msgs::msg::Bool>(instance_ + "/teleop/active", qos);
+        pub_ = this->create_publisher<geometry_msgs::msg::Twist>(cmd_vel_topic, qos);
+        active_pub_ = this->create_publisher<std_msgs::msg::Bool>(active_topic, qos);
 
         // Set initial speeds
         speed_ = 0.5;
@@ -34,7 +36,7 @@ public:
         std::cout << start << std::endl;
         std::cout << vels(speed_, turn_) << std::endl;
 
-        // Publish active = true at startup
+        // // Publish active = true at startup
         std_msgs::msg::Bool active_msg;
         active_msg.data = true;
         active_pub_->publish(active_msg);

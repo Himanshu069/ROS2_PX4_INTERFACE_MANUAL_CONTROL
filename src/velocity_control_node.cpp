@@ -20,8 +20,13 @@ public:
     _vehicle_attitude = std::make_shared<px4_ros2::OdometryAttitude>(*this);
     _clock = std::make_shared<rclcpp::Clock>(RCL_ROS_TIME);
     // Subscribe to cmd_vel topic
+    std::string ns = _node.get_namespace();
+    if (ns == "/") ns = "";  // root namespace
+
+    std::string cmd_vel_topic =
+        ns.empty() ? "cmd_vel" : ns + "/cmd_vel";
     _cmd_vel_sub = node.create_subscription<geometry_msgs::msg::Twist>(
-      "/cmd_vel", 10,
+      cmd_vel_topic, 10,
       [this](const geometry_msgs::msg::Twist::SharedPtr msg) {
         _latest_cmd_vel = msg;
         _last_cmd_time = _clock->now();
