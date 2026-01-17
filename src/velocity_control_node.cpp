@@ -63,7 +63,7 @@ public:
     }
     if ((current_time - _last_cmd_time).seconds()<=0.25) {
       // Convert Twist (body frame) to NED frame velocities
-      // Assuming cmd_vel is in body frame (common for joysticks):
+      // Assuming cmd_vel is in body frame :
       // linear.x = forward, linear.y = left, linear.z = up
       // angular.z = yaw rate
       float yaw = _vehicle_attitude->yaw(); 
