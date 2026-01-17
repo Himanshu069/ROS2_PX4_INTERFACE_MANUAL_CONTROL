@@ -36,12 +36,12 @@ public:
   void onActivate() override
   {
     _last_cmd_time = _clock->now();
-    RCLCPP_DEBUG(node().get_logger(), "Velocity control mode activated!");
+    // RCLCPP_DEBUG(node().get_logger(), "Velocity control mode activated!");
   }
 
   void onDeactivate() override
   {
-    RCLCPP_DEBUG(node().get_logger(), "Velocity control mode deactivated!");
+   // RCLCPP_DEBUG(node().get_logger(), "Velocity control mode deactivated!");
   }
 
   void updateSetpoint(float) override
