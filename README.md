@@ -7,6 +7,11 @@ This package uses the **ROS 2 PX4 Interface Library** to create a **custom Teleo
 It enables **terminal based command input**, direct interaction with PX4 flight modes, and supports both **single drone** and **multi drone** simulation using PX4 SITL.
 
 ---
+4x sped up video with gazebo simulation running at 10% speed
+
+https://github.com/user-attachments/assets/834726e6-0ccd-477c-8b5f-176bf68d6f15
+
+
 
 ##  Features
 
@@ -86,7 +91,10 @@ In a separate terminal,
 ```bash
 ./QGroundControl-x86_64.AppImage
 ```
-
+Also, start uXRCE-DDS client in a new terminal
+```bash
+MicroXRCEAgent udp4 -p 8888
+```
 ---
 
 ## Teleoperation
@@ -98,7 +106,16 @@ And , in another terminal,run
 ```bash
 ros2 run manual_ros2_px4_multi teleop_keyboard
 ```
-You need to first takeoff the drone then select Teleoperation mode in QGC , then you can send commands from the terminal to control the drone
+<img width="534" height="266" alt="Screenshot from 2026-01-17 19-43-02" src="https://github.com/user-attachments/assets/97a9c2d8-063d-439e-90f8-21979cc1bbc6" />
+<br>
+You can control the drone by giving teleop commands in this terminal.
+<br>
+
+---
+You need to first takeoff the drone then select Teleoperation mode once the drone is in Hover mode in QGC , then you can send commands from the terminal to control the drone
+
+<img width="644" height="414" alt="Screenshot from 2026-01-17 19-40-47" src="https://github.com/user-attachments/assets/2a81bf17-f60e-4ec1-9f2c-23d88d7b4121" />
+
 ---
 
 ## For Multi Drone
